@@ -1,5 +1,6 @@
 package com.tolulope.hublocker.service.serviceImplementation;
 
+import com.tolulope.hublocker.model.Location;
 import com.tolulope.hublocker.model.Locker;
 import com.tolulope.hublocker.model.LockerRequest;
 import com.tolulope.hublocker.repository.LocationRepository;
@@ -15,14 +16,15 @@ public record LockerServiceImplementation(
         LocationRepository locationRepository) implements LockerService {
     @Override
     public Locker saveLocker(LockerRequest lockerRequest) {
+        Location location = locationRepository.findById(lockerRequest.getLocation()).get();
         Locker locker = new Locker(
                 null,
-                lockerRequest.getName(),
+                location.getCity() + " locker",
                 lockerRequest.getPrice(),
                 lockerRequest.getNoOfSlot(),
                 null
         );
-        locker.setLocation(locationRepository.findById(lockerRequest.getLocation()).get());
+        locker.setLocation(location);
         return lockerRepository.save(locker);
     }
 
