@@ -19,7 +19,7 @@ public record LockerServiceImplementation(
         Location location = locationRepository.findById(lockerRequest.getLocation()).get();
         Locker locker = new Locker(
                 null,
-                location.getCity() + " locker",
+                lockerRequest.getName(),
                 lockerRequest.getPrice(),
                 lockerRequest.getNoOfSlot(),
                 null

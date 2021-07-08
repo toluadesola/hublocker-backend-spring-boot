@@ -24,5 +24,13 @@ public class AppInitializer implements ApplicationRunner {
             location = new Location("house 17, plasma gardens", "VI", "lagos");
             locationRepository.save(location);
         }
+        if (locationRepository.findByCity("Ikorodu").isEmpty()) {
+            location = new Location("fabian hotel, rest avenue", "Ikorodu", "lagos");
+            locationRepository.save(location);
+        }
+        if (locationRepository.findByCity("Ajah").isEmpty()) {
+            location = new Location("gray wells, ocean view", "Ajah", "lagos");
+            locationRepository.save(location);
+        }
     }
 }
